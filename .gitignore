@@ -1,0 +1,12 @@
+#Ignoruj środowisko virtualne
+venv/
+
+#Ignoruj pliki tymczasowe Pythona
+__pycache__/
+*.pyc
+
+#Ignoruj pliki IDE
+.idea/
+
+#Pliki systemowe (np. z Maca)
+.DS_Store
