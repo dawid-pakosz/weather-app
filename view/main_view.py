@@ -389,8 +389,11 @@ class MainView(tk.Tk):
         left = tk.Frame(main_info, bg="#1a1a1a")
         left.pack(side="left", padx=40)
 
-        self.city_name = tk.Label(left, text="", font=("Helvetica", 32), fg="white", bg="#1a1a1a")
-        self.city_name.pack()
+        # self.city_name = tk.Label(left, text="", font=("Helvetica", 32), fg="white", bg="#1a1a1a")
+        # self.city_name.pack()
+
+        self.top_info_label = tk.Label(left, text="", font=("Helvetica", 32), fg="white", bg="#1a1a1a")
+        self.top_info_label.pack()
 
         self.input_var = tk.StringVar()
         self.city_entry = tk.Entry(left, textvariable=self.input_var, font=("Helvetica", 16), fg="#dddddd", bg="#1a1a1a",
@@ -401,16 +404,30 @@ class MainView(tk.Tk):
         self.city_entry.bind('<FocusOut>', self._on_focusout)
 
 
-        self.send_btn = tk.Button(left, text="WYŚLIJ", font=("Helvetica", 12, "bold"), fg="white", bg="#1a1a1a",
-                                  borderwidth=0, highlightthickness=0, padx=10, pady=5, cursor="hand2",
-                                  activebackground="#dddddd", activeforeground="#333333")
-        self.send_btn.pack(side="left", padx=(20, 0))
+        button_border = tk.Frame(left, highlightbackground="white", highlightthickness=2, bd=0, bg="#1a1a1a")
+        button_border.pack(side="left", padx=(20, 0), pady=(10, 0))
+
+        self.send_btn = tk.Button(button_border,
+            text="WYŚLIJ",
+            font=("Helvetica", 12, "bold"),
+            fg="white",
+            bg="#1a1a1a",
+            borderwidth=0,
+            highlightthickness=0,
+            padx=20,
+            pady=8,
+            cursor="hand2",
+            activebackground="#dddddd",
+            activeforeground="#333333"
+        )
+        self.send_btn.pack()
 
         # Callback
         self.send_btn.config(command=self._on_send_click)
 
-        self.warning = tk.Label(left, text="", font=("Helvetica", 14), fg="tomato", bg="#1a1a1a")
-        self.warning.pack(pady=(10, 0))
+        #nie korzystamy juz z warning
+        # self.warning = tk.Label(left, text="", font=("Helvetica", 14), fg="tomato", bg="#1a1a1a")
+        # self.warning.pack(pady=(10, 0))
 
         # Prawa część: obrazek pogody
         right = tk.Frame(main_info, bg="#1a1a1a")
@@ -469,7 +486,8 @@ class MainView(tk.Tk):
         self.weather_lbl.config(text=weather)
         self.temp_lbl.config(text=f"{temperature}°C")
         self.humidity_lbl.config(text=f"{humidity}%")
-        self.city_name.config(text=self.input_var.get())
+        # self.city_name.config(text=self.input_var.get())
+        self.top_info_label.config(text=self.input_var.get(), fg="white")
 
         icon_path = os.path.join("resources", "icons", f"{icon_name}.png")
         if os.path.exists(icon_path):
@@ -478,10 +496,16 @@ class MainView(tk.Tk):
             self.photo_label.config(image=self.weather_photo)
 
     def show_warning(self, msg):
-        self.warning.config(text=msg)
+        #self.warning.config(text=msg)
+        self.top_info_label.config(text=msg, fg="tomato")
 
     def clear_warning(self):
-        self.warning.config(text="")
+        #self.warning.config(text="")
+        self.top_info_label.config(text="", fg="white")
+
+
+
+
 
 
 
