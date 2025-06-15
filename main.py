@@ -1,21 +1,3 @@
-# main.py
-
-# from view.main_view import MainView
-#
-#
-# def mock_controller(city_name):
-#     print(f"Pobrano dane dla miasta: {city_name}")
-#     app.display_weather(f"Przykładowa pogoda dla {city_name}:\n🌡️ 21°C\n☁️ Częściowo pochmurno")
-#
-#
-# if __name__ == "__main__":
-#     app = MainView(mock_controller)
-#     app.mainloop()
-
-
-
-
-# po refaktoryzacji
 from view.main_view import MainView
 
 
