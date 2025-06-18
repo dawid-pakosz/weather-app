@@ -121,7 +121,8 @@ class MainView(tk.Tk):
         self.humidity_lbl.pack(side="left", expand=True, fill="x")
 
     def _on_send_click(self):
-        city = self.input_var.get()
+        city = self.input_var.get().strip()
+
         if city and city != "Wpisz nazwę miasta...":
             self.clear_warning()
             self.controller(city)   #wywołaj kontroler
