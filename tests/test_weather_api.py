@@ -14,3 +14,11 @@ def test_invalid_city():
 def test_empty_city():
     result = get_weather_data("")
     assert result is None, "Powinno zwrócić None dla pustego ciągu"
+
+def test_get_weather_data_none():
+    result = get_weather_data(None)
+    assert result is None
+
+def test_get_weather_data_special_chars():
+    result = get_weather_data("!@#$%^&*()")
+    assert result is None
