@@ -70,7 +70,8 @@ class MainView(tk.Tk):
         self.city_entry.insert(0, "Wpisz nazwę miasta...")
         self.city_entry.bind('<FocusIn>', self._on_entry_click)
         self.city_entry.bind('<FocusOut>', self._on_focusout)
-
+        # Obsługa naciśnięcia klawisza Enter
+        self.city_entry.bind("<Return>", lambda event: self._on_send_click())
 
         button_border = tk.Frame(left, highlightbackground="white", highlightthickness=2, bd=0, bg="#1a1a1a")
         button_border.pack(side="left", padx=(20, 0), pady=(10, 0))
@@ -125,6 +126,7 @@ class MainView(tk.Tk):
 
         if city and city != "Wpisz nazwę miasta...":
             self.clear_warning()
+            self.show_loading()
             self.controller(city)   #wywołaj kontroler
         else:
             self.show_warning("Podaj nazwę miasta!")
@@ -175,6 +177,20 @@ class MainView(tk.Tk):
         self.weather_lbl.config(text="")
         self.temp_lbl.config(text="")
         self.humidity_lbl.config(text="")
+
+    def show_loading(self):
+        self.top_info_label.config(text="Ładowanie...", fg="white")
+        self.weather_lbl.config(text="")
+        self.temp_lbl.config(text="")
+        self.humidity_lbl.config(text="")
+
+        # Resetuj ikonę do unknown (placeholder)
+        icon_path = os.path.join("resources", "icons", "unknown.png")
+        if os.path.exists(icon_path):
+            img = Image.open(icon_path).resize((140, 140))
+            self.weather_photo = ImageTk.PhotoImage(img)
+            self.photo_label.config(image=self.weather_photo)
+
 
 
 
