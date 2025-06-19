@@ -1,5 +1,3 @@
-# controller.py – szkielet pliku
-
 from model.weather_api import get_weather_data
 
 def map_icon_to_local(icon_code):
@@ -29,7 +27,6 @@ class WeatherController:
                 temperature=data["temperature"],
                 humidity=data["humidity"],
                 icon_name=icon_name
-
             )
         else:
             self.view.show_warning("Nie znaleziono miasta lub błąd API.")

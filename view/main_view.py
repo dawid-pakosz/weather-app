@@ -45,7 +45,6 @@ class MainView(tk.Tk):
             self.montserrat_regular = font.Font(family="Helvetica", size=20)
 
     def _create_layout(self):
-
         # Górna część
         top = tk.Frame(self.wrapper, bg="#1a1a1a")
         top.pack(fill="x", pady=(0, 10), ipady=10)
@@ -70,8 +69,7 @@ class MainView(tk.Tk):
         self.city_entry.insert(0, "Wpisz nazwę miasta...")
         self.city_entry.bind('<FocusIn>', self._on_entry_click)
         self.city_entry.bind('<FocusOut>', self._on_focusout)
-        # Obsługa naciśnięcia klawisza Enter
-        self.city_entry.bind("<Return>", lambda event: self._on_send_click())
+        self.city_entry.bind("<Return>", lambda event: self._on_send_click())   # Obsługa naciśnięcia klawisza Enter
 
         button_border = tk.Frame(left, highlightbackground="white", highlightthickness=2, bd=0, bg="#1a1a1a")
         button_border.pack(side="left", padx=(20, 0), pady=(10, 0))
@@ -91,8 +89,6 @@ class MainView(tk.Tk):
         self.weather_photo = ImageTk.PhotoImage(img)
         self.photo_label = tk.Label(right, image=self.weather_photo, bg="#1a1a1a")
         self.photo_label.pack()
-
-
 
         # Dolna część (bottom)
         bottom = tk.Frame(self.wrapper, bg="#1a1a1a")
@@ -131,8 +127,6 @@ class MainView(tk.Tk):
         else:
             self.show_warning("Podaj nazwę miasta!")
 
-
-
     def _on_entry_click(self, event):
         if self.city_entry.get() == "Wpisz nazwę miasta...":
             self.city_entry.delete(0, tk.END)
@@ -157,8 +151,6 @@ class MainView(tk.Tk):
             self.photo_label.config(image=self.weather_photo)
 
     def show_warning(self, msg):
-        #self.warning.config(text=msg)
-        # self.top_info_label.config(text=msg, fg="tomato")
         self.top_info_label.config(text=msg, fg="tomato")
         self.weather_lbl.config(text="")
         self.temp_lbl.config(text="")
@@ -171,8 +163,6 @@ class MainView(tk.Tk):
             self.photo_label.config(image=self.weather_photo)
 
     def clear_warning(self):
-        #self.warning.config(text="")
-        #self.top_info_label.config(text="", fg="white")
         self.top_info_label.config(text="", fg="white")
         self.weather_lbl.config(text="")
         self.temp_lbl.config(text="")
@@ -190,15 +180,3 @@ class MainView(tk.Tk):
             img = Image.open(icon_path).resize((140, 140))
             self.weather_photo = ImageTk.PhotoImage(img)
             self.photo_label.config(image=self.weather_photo)
-
-
-
-
-
-
-
-
-
-
-
-
