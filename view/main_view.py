@@ -175,14 +175,12 @@ class MainView(tk.Tk):
             self.city_entry.config(fg='#dddddd')
 
     def _on_key_press(self, event):
-        """Usuń placeholder przy pierwszym naciśnięciu klawisza"""
         current_text = self.city_entry.get()
 
         if current_text == "Insert city name...":
             self.city_entry.delete(0, tk.END)
             self.city_entry.config(fg='white')
 
-        # Pozwól na normalne wpisywanie
         return
 
     def update_weather_data(self, weather, temperature, humidity, icon_name):
