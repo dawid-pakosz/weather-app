@@ -218,12 +218,29 @@ class MainView(tk.Tk):
             self.photo_label.config(image=self.weather_photo)
 
     def clear_all(self):
+        # self.input_var.set("")
+        # self.top_info_label.config(text="", fg="white")
+        # self.weather_lbl.config(text="")
+        # self.temp_lbl.config(text="")
+        # self.humidity_lbl.config(text="")
+        # self.city_entry.insert(0, "Insert city name...")
+        #
+        # # Ustaw ikonę na unknown
+        # icon_path = os.path.join("resources", "icons", "unknown.png")
+        # if os.path.exists(icon_path):
+        #     img = Image.open(icon_path).resize((140, 140))
+        #     self.weather_photo = ImageTk.PhotoImage(img)
+        #     self.photo_label.config(image=self.weather_photo)
         self.input_var.set("")
         self.top_info_label.config(text="", fg="white")
         self.weather_lbl.config(text="")
         self.temp_lbl.config(text="")
         self.humidity_lbl.config(text="")
+        self.city_entry.delete(0, tk.END)
         self.city_entry.insert(0, "Insert city name...")
+        self.city_entry.config(fg="#dddddd")
+
+
 
         # Ustaw ikonę na unknown
         icon_path = os.path.join("resources", "icons", "unknown.png")
@@ -231,6 +248,12 @@ class MainView(tk.Tk):
             img = Image.open(icon_path).resize((140, 140))
             self.weather_photo = ImageTk.PhotoImage(img)
             self.photo_label.config(image=self.weather_photo)
+
+        # **Wyczyszczenie forecastu:**
+        for widget in self.forecast_frame.winfo_children():
+            widget.destroy()
+        # Wyczyszczenie danych do eksportu, jeśli są
+        self.forecast_export_data = []
 
     def city_info_placeholder(self):
         print("Kliknięto przycisk Info o mieście – funkcja w budowie.")
