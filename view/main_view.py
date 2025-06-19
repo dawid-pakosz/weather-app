@@ -64,12 +64,14 @@ class MainView(tk.Tk):
         self.top_info_label = tk.Label(left, text="", font=("Helvetica", 32), fg="white", bg="#1a1a1a")
         self.top_info_label.pack()
 
+        # ------------------ Search city field -------------------
         self.input_var = tk.StringVar()
         self.city_entry = tk.Entry(left, textvariable=self.input_var, font=("Helvetica", 16), fg="#dddddd", bg="#1a1a1a",
                                    insertbackground="white", borderwidth=0)
         self.city_entry.pack(pady=(10, 0), side="left")
 
         self.city_entry.insert(0, "Insert city name...")
+        self.city_entry.bind('<Key>', self._on_key_press)
         self.city_entry.bind('<FocusIn>', self._on_entry_click)
         self.city_entry.bind('<FocusOut>', self._on_focusout)
         self.city_entry.bind("<Return>", lambda event: self._on_send_click())   # Obsługa naciśnięcia klawisza Enter
@@ -152,7 +154,6 @@ class MainView(tk.Tk):
         )
         self.clear_btn.pack(side="left", padx=10)
 
-
     def _on_send_click(self):
         city = self.input_var.get().strip()
 
@@ -172,6 +173,17 @@ class MainView(tk.Tk):
         if self.city_entry.get() == "":
             self.city_entry.insert(0, "Insert city name...")
             self.city_entry.config(fg='#dddddd')
+
+    def _on_key_press(self, event):
+        """Usuń placeholder przy pierwszym naciśnięciu klawisza"""
+        current_text = self.city_entry.get()
+
+        if current_text == "Insert city name...":
+            self.city_entry.delete(0, tk.END)
+            self.city_entry.config(fg='white')
+
+        # Pozwól na normalne wpisywanie
+        return
 
     def update_weather_data(self, weather, temperature, humidity, icon_name):
         self.weather_lbl.config(text=weather)
