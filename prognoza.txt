@@ -1,0 +1,6 @@
+Dzień | Temperatura | Ikona
+Friday | 17°C | sun
+Saturday | 21°C | cloud
+Sunday | 22°C | cloud
+Monday | 24°C | rain
+Tuesday | 18°C | sun
