@@ -6,20 +6,19 @@ import os
 class MainView(tk.Tk):
     def __init__(self, controller):
         super().__init__()
-        self.controller = controller #zapisz referencje do kontrolera
 
+        self.controller = controller #controller reference
         self.title("Weather App")
-        self.geometry("900x650")  # było 900x500
-        # self.geometry("900x500")
+        self.geometry("900x650")
         self.resizable(False, False)
 
-        # Gradient tła
+        # ------------------ Gradient background -------------------
         self.gradient = self.create_gradient(900, 650, (194, 17, 141), (255, 80, 60))
         self.canvas = tk.Canvas(self, width=900, height=650, highlightthickness=0)
         self.canvas.pack(fill="both", expand=True)
         self.canvas.create_image(0, 0, anchor="nw", image=self.gradient)
 
-        # Główna ramka (wrapper)
+        # ------------------ main wrapper -------------------
         self.wrapper = tk.Frame(self, bg="#1a1a1a", bd=2, relief="solid", highlightbackground="white", highlightthickness=2)
         self.wrapper.place(relx=0.5, rely=0.5, anchor="center", width=800, height=600)
 
@@ -46,17 +45,19 @@ class MainView(tk.Tk):
             self.montserrat_regular = font.Font(family="Helvetica", size=20)
 
     def _create_layout(self):
-        # ------------------ upper -------------------
+    # ------------------ upper -------------------
         top = tk.Frame(self.wrapper, bg="#1a1a1a")
         top.pack(fill="x", pady=(0, 10), ipady=10)
 
+        # ------------------ label -------------------
         title = tk.Label(top, text="WEATHER APP", font=self.montserrat_bold, fg="white", bg="#1a1a1a")
         title.pack(pady=10)
 
+        # ------------------ main frame -------------------
         main_info = tk.Frame(top, bg="#1a1a1a")
         main_info.pack(fill="x", pady=(10, 0))
 
-        # ------------------ left side -------------------
+    # ------------------ left side -------------------
         left = tk.Frame(main_info, bg="#1a1a1a")
         left.pack(side="left", padx=40)
 
@@ -67,30 +68,34 @@ class MainView(tk.Tk):
         self.city_entry = tk.Entry(left, textvariable=self.input_var, font=("Helvetica", 16), fg="#dddddd", bg="#1a1a1a",
                                    insertbackground="white", borderwidth=0)
         self.city_entry.pack(pady=(10, 0), side="left")
+
         self.city_entry.insert(0, "Insert city name...")
         self.city_entry.bind('<FocusIn>', self._on_entry_click)
         self.city_entry.bind('<FocusOut>', self._on_focusout)
         self.city_entry.bind("<Return>", lambda event: self._on_send_click())   # Obsługa naciśnięcia klawisza Enter
 
+        # ------------------ button send -------------------
         button_border = tk.Frame(left, highlightbackground="white", highlightthickness=2, bd=0, bg="#1a1a1a")
         button_border.pack(side="left", padx=(20, 0), pady=(10, 0))
 
-        # ------------------ button send -------------------
         self.send_btn = tk.Button(button_border,text="Send", font=("Helvetica", 12, "bold"), fg="white", bg="#1a1a1a", borderwidth=0, highlightthickness=0, padx=20, pady=8, cursor="hand2", activebackground="#dddddd", activeforeground="#333333")
         self.send_btn.pack()
         self.send_btn.config(command=self._on_send_click)
 
-        # ------------------ right side: weather icon -------------------
+    # ------------------ right side -------------------
+
+        # ------------------ icon frame -------------------
         right = tk.Frame(main_info, bg="#1a1a1a")
         right.pack(side="right", padx=40)
 
+        # ------------------ weather icon -------------------
         icon_path = os.path.join("resources", "icons", "sun.png")
         img = Image.open(icon_path).resize((140, 140))
         self.weather_photo = ImageTk.PhotoImage(img)
         self.photo_label = tk.Label(right, image=self.weather_photo, bg="#1a1a1a")
         self.photo_label.pack()
 
-        # ------------------ bottom -------------------
+    # ------------------ bottom -------------------
         bottom = tk.Frame(self.wrapper, bg="#1a1a1a")
         bottom.pack(fill="both", expand=True, pady=(10, 0))
 
@@ -130,13 +135,13 @@ class MainView(tk.Tk):
         self.city_info_btn.pack(side="left", padx=10)
 
         self.export_txt_btn = tk.Button(
-            buttons_frame, text="Eksportuj do TXT", font=("Helvetica", 12),
+            buttons_frame, text="Export to TXT", font=("Helvetica", 12),
             command=self.export_txt, bg="#333", fg="white", padx=10, pady=5, cursor="hand2"
         )
         self.export_txt_btn.pack(side="left", padx=10)
 
         self.export_csv_btn = tk.Button(
-            buttons_frame, text="Eksportuj do CSV", font=("Helvetica", 12),
+            buttons_frame, text="Export to CSV", font=("Helvetica", 12),
             command=self.export_csv, bg="#333", fg="white", padx=10, pady=5, cursor="hand2"
         )
         self.export_csv_btn.pack(side="left", padx=10)

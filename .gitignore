@@ -1,6 +1,9 @@
 #Ignoruj środowisko virtualne
 venv/
 
+# Ignoruj prywatne dane i środowiska
+.env
+
 #Ignoruj pliki tymczasowe Pythona
 __pycache__/
 *.pyc
