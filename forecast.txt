@@ -1,1 +1,6 @@
 Day | Temperature | Icon
+Tuesday | 16°C | rain
+Wednesday | 16°C | rain
+Thursday | 16°C | sun
+Friday | 16°C | rain
+Saturday | 18°C | cloud

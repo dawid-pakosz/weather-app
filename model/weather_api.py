@@ -21,7 +21,7 @@ def get_weather_and_forecast_data(city_name):
         "appid": API_KEY,
         "units": "metric",
         "lang": "en",
-        "cnt": 40  # 5 dni x 8 pomiarów co 3h = 40
+        "cnt": 40
     }
 
     try:
@@ -33,7 +33,6 @@ def get_weather_and_forecast_data(city_name):
         forecast_response.raise_for_status()
         forecast_data = forecast_response.json()
 
-        # aktualna pogoda
         current = {
             "weather": current_data["weather"][0]["description"],
             "temperature": int(current_data["main"]["temp"]),
@@ -41,7 +40,6 @@ def get_weather_and_forecast_data(city_name):
             "icon": current_data["weather"][0]["icon"][:2]
         }
 
-        # prognoza na najbliższe 5 dni
         forecast_list = forecast_data["list"]
         forecast_result = []
         today = datetime.today().date()
@@ -51,16 +49,13 @@ def get_weather_and_forecast_data(city_name):
             dt = datetime.strptime(item["dt_txt"], "%Y-%m-%d %H:%M:%S")
             forecast_day = dt.date()
             if forecast_day > today:
-                # Pierwszy wpis w danym dniu — zapisz jako najlepszy kandydat
                 if forecast_day not in day_map:
                     day_map[forecast_day] = item
                 else:
-                    # Nadpisz, jeśli godzina jest bliżej 12:00
                     current_best = day_map[forecast_day]
                     if abs(dt.hour - 12) < abs(datetime.strptime(current_best["dt_txt"], "%Y-%m-%d %H:%M:%S").hour - 12):
                         day_map[forecast_day] = item
 
-        # Zamień day_map na forecast_result i zatrzymaj się po 5 dniach
         for i, (day, item) in enumerate(sorted(day_map.items())):
             if i >= 5:
                 break
@@ -72,12 +67,9 @@ def get_weather_and_forecast_data(city_name):
         return {"current": current, "forecast": forecast_result}
 
     except requests.exceptions.Timeout:
-        print("❌ Timeout – serwer nie odpowiada.")
+        print("Timeout – serwer nie odpowiada.")
     except requests.exceptions.RequestException as e:
-        print(f"❌ Błąd żądania: {e}")
+        print(f"Błąd żądania: {e}")
     except Exception as e:
-        print(f"❌ Nieoczekiwany błąd: {e}")
-
+        print(f"Nieoczekiwany błąd: {e}")
     return None
-
-
