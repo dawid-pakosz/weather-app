@@ -1,44 +1,95 @@
-# Weather App – aplikacja pogodowa w Pythonie
+# Weather App
 
-Aplikacja desktopowa do wyświetlania bieżącej pogody oraz prognozy 5-dniowej dla wybranego miasta. 
-Zbudowana w architekturze MVC z wykorzystaniem biblioteki `tkinter`, `Pillow`, `requests` oraz API OpenWeatherMap.
+A modern weather application written in Python with a graphical user interface (Tkinter).  
+This project was developed as a final assignment for postgraduate studies in Python Development.
 
----
+## Features
 
-## Funkcje
+- Search for current weather by city name
+- Displays temperature, humidity, and weather description
+- Clean, modern GUI inspired by HTML/CSS web apps
+- Error handling and user-friendly warnings
+- "Clear" button to reset all fields and results
 
-- Wyszukiwanie pogody po nazwie miasta
-- Wyświetlanie aktualnych danych:
-  - pogoda (opis, temperatura, wilgotność)
-  - ikona pogody
-- Prognoza 5-dniowa:
-  - dzień tygodnia
-  - temperatura
-  - ikonka
-- Eksport danych do CSV / TXT
-- Przycisk do czyszczenia danych
-- Obsługa błędów i walidacja
+## Screenshot
 
----
+<!-- Replace the path below with the actual screenshot path if available -->
+![App Screenshot](resources/screenshots/app_screenshot.png)
 
-## Jak uruchomić projekt
+## Installation
 
-1. Sklonuj repozytorium:
+1. **Clone the repository:**
 git clone https://github.com/dawid-pakosz/weather-app.git
 cd weather-app
 
-2. Utwórz i aktywuj środowisko wirtualne (opcjonalnie):
-python -m venv venv
-venv\Scripts\activate
 
-3. Zainstaluj zależności
+2. **Install required libraries:**
 pip install -r requirements.txt
+*If you don't have `requirements.txt`, install manually:*
+pip install pillow requests
 
-4. Dodaj swój klucz API do pliku .env:
-API_KEY=tu_wklej_swoj_klucz_api
 
-5. Uruchom aplikacje
+3. **Run the application:**
 python main.py
 
-6. Testy
-pytest tests/
+## Usage
+
+- Enter a city name in the search field and click "SEND".
+- Weather results will be displayed at the bottom of the window.
+- Use the "Clear" button to reset the search and results.
+- If an error occurs (e.g., invalid city name), a warning message will be shown and previous results will be cleared.
+
+## Requirements
+
+- Python 3.8+
+- Libraries: `tkinter`, `Pillow`, `requests`
+
+## Project Structure
+
+weather_app/
+├── controller/
+│   ├── __init__.py
+│   └── controller.py
+├── model/
+│   ├── __init__.py
+│   └── weather_api.py
+├── resources/
+│   └── icons/
+│       ├── cloud.png
+│       ├── drizzle.png
+│       ├── fog.png
+│       ├── ice.png
+│       ├── rain.png
+│       ├── sun.png
+│       ├── thunderstorm.png
+│       └── unknown.png
+├── tests/
+│   ├── __init__.py
+│   └── test_weather_api.py
+├── view/
+│   ├── __init__.py
+│   └── main_view.py
+├── .env
+├── .env.example
+├── .gitignore
+├── main.py
+├── README.md
+└── requirements.txt
+
+
+
+## Author
+
+Dawid Pakosz  
+Contact: [your email or GitHub profile]
+
+## License
+
+This project was created for educational purposes.  
+(You can add a license statement here, e.g., MIT License.)
+
+---
+
+*Feel free to extend this README with additional sections such as roadmap, known issues, or contribution guidelines if needed.*
+
+
