@@ -45,7 +45,7 @@ class MainView(tk.Tk):
             self.montserrat_regular = font.Font(family="Helvetica", size=20)
 
     def _create_layout(self):
-    # ------------------ upper -------------------
+        # ------------------ upper -------------------
         top = tk.Frame(self.wrapper, bg="#1a1a1a")
         top.pack(fill="x", pady=(0, 10), ipady=10)
 
@@ -57,7 +57,7 @@ class MainView(tk.Tk):
         main_info = tk.Frame(top, bg="#1a1a1a")
         main_info.pack(fill="x", pady=(10, 0))
 
-    # ------------------ left side -------------------
+        # ------------------ left side -------------------
         left = tk.Frame(main_info, bg="#1a1a1a")
         left.pack(side="left", padx=40)
 
@@ -84,8 +84,7 @@ class MainView(tk.Tk):
         self.send_btn.pack()
         self.send_btn.config(command=self._on_send_click)
 
-    # ------------------ right side -------------------
-
+        # ------------------ right side -------------------
         # ------------------ icon frame -------------------
         right = tk.Frame(main_info, bg="#1a1a1a")
         right.pack(side="right", padx=40)
@@ -97,7 +96,7 @@ class MainView(tk.Tk):
         self.photo_label = tk.Label(right, image=self.weather_photo, bg="#1a1a1a")
         self.photo_label.pack()
 
-    # ------------------ bottom -------------------
+        # ------------------ bottom -------------------
         bottom = tk.Frame(self.wrapper, bg="#1a1a1a")
         bottom.pack(fill="both", expand=True, pady=(10, 0))
 
@@ -129,12 +128,6 @@ class MainView(tk.Tk):
         # ------------------ buttons -------------------
         buttons_frame = tk.Frame(self.wrapper, bg="#1a1a1a")
         buttons_frame.pack(pady=(20, 10))
-
-        self.city_info_btn = tk.Button(
-            buttons_frame, text="More about city", font=("Helvetica", 12),
-            command=self.city_info_placeholder, bg="#333", fg="white", padx=10, pady=5, cursor="hand2"
-        )
-        self.city_info_btn.pack(side="left", padx=10)
 
         self.export_txt_btn = tk.Button(
             buttons_frame, text="Export to TXT", font=("Helvetica", 12),
@@ -265,9 +258,6 @@ class MainView(tk.Tk):
         # Wyczyszczenie danych do eksportu, jeśli są
         self.forecast_export_data = []
 
-    def city_info_placeholder(self):
-        print("Kliknięto przycisk Info o mieście – funkcja w budowie.")
-
     def update_forecast(self, forecast_data):
         for widget in self.forecast_frame.winfo_children():
             widget.destroy()
@@ -296,16 +286,16 @@ class MainView(tk.Tk):
 
     def export_txt(self):
         if hasattr(self, "forecast_export_data"):
-            with open("prognoza.txt", "w", encoding="utf-8") as f:
-                f.write("Dzień | Temperatura | Ikona\n")
+            with open("forecast.txt", "w", encoding="utf-8") as f:
+                f.write("Day | Temperature | Icon\n")
                 for item in self.forecast_export_data:
                     f.write(f"{item['day']} | {item['temperature']}°C | {item['icon_name']}\n")
 
     def export_csv(self):
         if hasattr(self, "forecast_export_data"):
             import csv
-            with open("prognoza.csv", "w", newline="", encoding="utf-8") as f:
+            with open("forecast.csv", "w", newline="", encoding="utf-8") as f:
                 writer = csv.writer(f)
-                writer.writerow(["Dzień", "Temperatura", "Ikona"])
+                writer.writerow(["Day", "Temperature", "Icon"])
                 for item in self.forecast_export_data:
                     writer.writerow([item["day"], item["temperature"], item["icon_name"]])
