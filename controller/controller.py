@@ -44,4 +44,4 @@ class WeatherController:
             self.view.update_forecast(forecast_ui_data)
 
         else:
-            self.view.show_warning("Nie znaleziono miasta lub błąd API.")
+            self.view.show_warning("City not found / API issue")
