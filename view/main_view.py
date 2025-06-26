@@ -197,6 +197,10 @@ class MainView(tk.Tk):
             self.weather_photo = ImageTk.PhotoImage(img)
             self.photo_label.config(image=self.weather_photo)
 
+        for widget in self.forecast_frame.winfo_children():
+            widget.destroy()
+        self.forecast_export_data = []
+
     def clear_warning(self):
         self.top_info_label.config(text="", fg="white")
         self.weather_lbl.config(text="")
