@@ -11,11 +11,6 @@ This project was developed as a final assignment for postgraduate studies in Pyt
 - Error handling and user-friendly warnings
 - "Clear" button to reset all fields and results
 
-## Screenshot
-
-<!-- Replace the path below with the actual screenshot path if available -->
-![App Screenshot](resources/screenshots/app_screenshot.png)
-
 ## Installation
 
 1. **Clone the repository:**
