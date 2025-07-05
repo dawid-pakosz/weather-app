@@ -81,15 +81,11 @@ weather_app/
 ## Author
 
 Dawid Pakosz  
-Contact: [your email or GitHub profile]
+Contact: dawid.pakosz@gmail.com
 
 ## License
 
 This project was created for educational purposes.  
-(You can add a license statement here, e.g., MIT License.)
 
----
-
-*Feel free to extend this README with additional sections such as roadmap, known issues, or contribution guidelines if needed.*
 
 
