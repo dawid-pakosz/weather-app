@@ -77,6 +77,12 @@ weather_app/
 
 Dawid Pakosz  
 Contact: dawid.pakosz@gmail.com
+LinkedIn: [linkedin.com/in/dawid-pakosz](https://www.linkedin.com/in/dawid-pakosz)
+
+## Featured on LinkedIn
+
+This project has been showcased on my [LinkedIn profile](https://www.linkedin.com/in/dawid-pakosz).  
+Feel free to connect or leave feedback!
 
 ## License
 
